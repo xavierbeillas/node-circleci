@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install app dependency
+          command: npm install
+      - run:
           name: test
           command: npm test
       - store_artifacts:
