@@ -11,4 +11,13 @@ router.get('/status', function(req, res) {
   res.json({status: 'API is running'});
 });
 
+router.get('/numbers', function(req, res) {
+  res.type('json');
+  res.json({values: [
+    1,
+    2,
+    3
+  ]});
+});
+
 module.exports = router;
