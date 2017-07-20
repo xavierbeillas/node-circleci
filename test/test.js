@@ -30,3 +30,14 @@ describe('GET /api/status', function() {
       .expect(200, done);
   });
 });
+
+describe('GET /api/numbers', function() {
+  it('respond with numbers in 200', function(done) {
+    request(app)
+      .get('/api/numbers')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+});
+
