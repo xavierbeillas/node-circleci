@@ -40,3 +40,13 @@ describe('GET /api/numbers', function() {
       .expect(200, done);
   });
 });
+
+describe('GET /api/pool', function() {
+  it('respond with numbers in 200', function(done) {
+    request(app)
+      .get('/api/pool')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+});
