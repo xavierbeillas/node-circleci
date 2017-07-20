@@ -20,4 +20,13 @@ router.get('/numbers', function(req, res) {
   ]});
 });
 
+router.get('/pool', function(req, res) {
+  res.type('json');
+  res.json({values: [
+    1,
+    2,
+    3
+  ]});
+});
+
 module.exports = router;
