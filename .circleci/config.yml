@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     working_directory: ~/test-circle
-    machine: true
     docker:
+      - machine: true
       - image: circleci/golang:1.8
     steps:
       - checkout
