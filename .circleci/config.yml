@@ -23,4 +23,4 @@ jobs:
             chmod +x /usr/local/bin/docker-compose
       - run:
           name: Run unit tests
-          command: docker exec -it testcircle_node_1 /usr/local/bin/npm test
+          command: docker exec -it node /usr/local/bin/npm test
