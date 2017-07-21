@@ -25,7 +25,7 @@ jobs:
           name: Start compose
           command: |
             set -x
-            docker-compose up -d
+            docker-compose up
       - run:
           name: Run unit tests
           command: docker exec -it node /usr/local/bin/npm test
