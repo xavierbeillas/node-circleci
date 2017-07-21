@@ -25,7 +25,7 @@ jobs:
           name: Start compose
           command: |
             set -x
-            docker-compose up -d && sleep 10
+            docker-compose up -d
             docker run --network container:node \
               appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:3000/api/pool
       - run:
