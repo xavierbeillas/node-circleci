@@ -3,29 +3,23 @@ jobs:
   build:
     working_directory: ~/test-circle
     docker:
-      - image: circleci/cci-demo-docker-primary:0.0.2
+      - image: circleci/node:7.10
     steps:
       - checkout
-      - setup_remote_docker
       - run:
-          name: Install Docker client
-          command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
+          name: install app dependency
+          command: npm install
       - run:
-          name: Install Docker Compose
-          command: |
-            set -x
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
+          name: test
+          command: npm test
       - run:
-          name: Start compose
-          command: |
-            set -x
-            docker-compose up
-      - run:
-          name: Run unit tests
-          command: docker exec -it node /usr/local/bin/npm test
+          name: code-coverage
+          command: ./node_modules/nyc/bin/nyc.js npm test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results.xml
