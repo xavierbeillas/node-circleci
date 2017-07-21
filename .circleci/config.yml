@@ -2,9 +2,7 @@ version: 2
 jobs:
   build:
     working_directory: ~/test-circle
-    docker:
-      - machine: true
-      - image: circleci/golang:1.8
+    machine: true
     steps:
       - checkout
       - setup_remote_docker
