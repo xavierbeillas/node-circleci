@@ -22,5 +22,10 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
       - run:
+          name: Start compose
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
           name: Run unit tests
           command: docker exec -it node /usr/local/bin/npm test
