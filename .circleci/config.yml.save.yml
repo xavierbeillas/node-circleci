@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/test-circle
+    docker:
+      - image: circleci/node:7.10
+    steps:
+      - checkout
+      - run:
+          name: install app dependency
+          command: npm install
+      - run:
+          name: test
+          command: npm test
+      - run:
+          name: code-coverage
+          command: ./node_modules/nyc/bin/nyc.js npm test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results.xml
